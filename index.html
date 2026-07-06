@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toise Coffee Roastery + Brewstudio — Worli, Mumbai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --espresso:#2B1B12;
+    --espresso-deep:#1C110B;
+    --paper:#F7EFE3;
+    --citrus:#C7672B;
+    --matcha:#8A9A5B;
+    --bean-tan:#D4C5A9;
+    --paper-dim: rgba(247,239,227,0.62);
+    --paper-faint: rgba(247,239,227,0.32);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--espresso);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 32px;
+    background:linear-gradient(to bottom, rgba(28,17,11,0.92), rgba(28,17,11,0));
+    backdrop-filter:blur(2px);
+  }
+  .brandmark{
+    font-family:'Fraunces',serif;font-weight:600;font-size:1.3rem;letter-spacing:0.01em;
+    display:flex;align-items:center;gap:10px;
+  }
+  .brandmark .dot{width:7px;height:7px;border-radius:50%;background:var(--citrus);display:inline-block;}
+  nav ul{list-style:none;display:flex;gap:36px;font-size:0.85rem;letter-spacing:0.03em;text-transform:uppercase;}
+  nav ul li a{opacity:0.78;transition:opacity 0.2s;}
+  nav ul li a:hover{opacity:1;}
+  nav ul li a:focus-visible{outline:2px solid var(--citrus);outline-offset:4px;}
+  .nav-cta{
+    border:1px solid var(--paper-faint);padding:9px 18px;border-radius:100px;font-size:0.8rem;
+    letter-spacing:0.03em;text-transform:uppercase;transition:all 0.2s;
+  }
+  .nav-cta:hover{background:var(--paper);color:var(--espresso);border-color:var(--paper);}
+  .nav-cta:focus-visible{outline:2px solid var(--citrus);outline-offset:2px;}
+  .menu-toggle{display:none;background:none;border:none;color:var(--paper);font-size:1.6rem;cursor:pointer;}
+
+  @media (max-width:780px){
+    nav ul, .nav-cta{display:none;}
+    .menu-toggle{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;
+    position:relative;
+    padding-top:100px;padding-bottom:60px;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(199,103,43,0.16), transparent 60%),
+      var(--espresso);
+  }
+
+  .hero-grain{
+    position:absolute;inset:0;pointer-events:none;opacity:0.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .hero-inner{
+    display:grid;grid-template-columns:1.15fr 0.85fr;gap:48px;align-items:center;
+    position:relative;z-index:2;
+  }
+
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--bean-tan);display:flex;align-items:center;gap:10px;margin-bottom:22px;
+  }
+  .eyebrow::before{content:'';width:24px;height:1px;background:var(--citrus);display:inline-block;}
+
+  h1.display{
+    font-family:'Fraunces',serif;font-weight:600;font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.03;
+    letter-spacing:-0.01em;
+  }
+  h1.display em{font-style:italic;font-weight:400;color:var(--citrus);}
+
+  .hero-sub{
+    margin-top:24px;font-size:1.05rem;line-height:1.65;color:var(--paper-dim);max-width:480px;
+  }
+
+  .hero-actions{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;}
+
+  .btn-primary{
+    background:var(--citrus);color:var(--espresso-deep);padding:14px 28px;border-radius:100px;
+    font-size:0.9rem;font-weight:600;letter-spacing:0.02em;transition:transform 0.2s, background 0.2s;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-primary:hover{transform:translateY(-2px);background:#DD7A3C;}
+  .btn-primary:focus-visible{outline:2px solid var(--paper);outline-offset:3px;}
+
+  .btn-ghost{
+    border:1px solid var(--paper-faint);color:var(--paper);padding:14px 28px;border-radius:100px;
+    font-size:0.9rem;font-weight:500;letter-spacing:0.02em;transition:all 0.2s;
+  }
+  .btn-ghost:hover{border-color:var(--paper);background:rgba(247,239,227,0.06);}
+  .btn-ghost:focus-visible{outline:2px solid var(--citrus);outline-offset:2px;}
+
+  .hero-stats{display:flex;gap:28px;margin-top:48px;}
+  .stat{font-family:'JetBrains Mono',monospace;}
+  .stat-num{font-size:1.5rem;color:var(--paper);font-weight:500;}
+  .stat-label{font-size:0.72rem;color:var(--paper-dim);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;}
+
+  /* steam/cup signature */
+  .cup-scene{
+    position:relative;display:flex;justify-content:center;align-items:flex-end;height:420px;
+  }
+  .steam-svg{position:absolute;bottom:160px;width:140px;height:220px;}
+  .steam-path{
+    fill:none;stroke:var(--paper-faint);stroke-width:2.4;stroke-linecap:round;
+    stroke-dasharray:6 10;
+    animation:rise 6s linear infinite;
+  }
+  .steam-path.s2{animation-delay:1.4s;stroke:rgba(199,103,43,0.5);}
+  .steam-path.s3{animation-delay:2.8s;}
+  @keyframes rise{
+    0%{stroke-dashoffset:0; opacity:0;}
+    15%{opacity:0.9;}
+    85%{opacity:0.5;}
+    100%{stroke-dashoffset:-180; opacity:0;}
+  }
+  .cup-svg{width:170px;}
+
+  @media (max-width:900px){
+    .hero-inner{grid-template-columns:1fr;}
+    .cup-scene{height:260px;order:-1;}
+    .hero-stats{flex-wrap:wrap;}
+  }
+
+  /* ---------- SECTION SCAFFOLDING ---------- */
+  section{padding:110px 0;position:relative;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:56px;flex-wrap:wrap;}
+  .section-tag{
+    font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--citrus);
+    letter-spacing:0.1em;text-transform:uppercase;margin-bottom:14px;display:block;
+  }
+  h2.display{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.1;max-width:560px;}
+  .section-note{font-size:0.95rem;color:var(--paper-dim);max-width:320px;line-height:1.6;}
+
+  .rule{height:1px;background:linear-gradient(to right, var(--bean-tan), transparent);opacity:0.25;}
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--espresso-deep);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  .about-copy p{font-size:1.05rem;line-height:1.8;color:var(--paper-dim);margin-bottom:18px;}
+  .about-copy p:last-child{margin-bottom:0;}
+  .roast-note{
+    border:1px solid var(--paper-faint);border-radius:4px;padding:24px;
+    font-family:'JetBrains Mono',monospace;font-size:0.82rem;line-height:2;color:var(--bean-tan);
+    background:rgba(247,239,227,0.02);
+  }
+  .roast-note .rn-row{display:flex;justify-content:space-between;border-bottom:1px dashed rgba(212,197,169,0.2);padding:8px 0;}
+  .roast-note .rn-row:last-child{border-bottom:none;}
+  .roast-note .rn-key{color:var(--paper-faint);}
+  .roast-note .rn-val{color:var(--paper);}
+
+  @media (max-width:860px){.about-grid{grid-template-columns:1fr;}}
+
+  /* ---------- MENU: tasting-card grid ---------- */
+  .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(212,197,169,0.18);border:1px solid rgba(212,197,169,0.18);}
+  .tasting-card{
+    background:var(--espresso);padding:36px 30px;position:relative;transition:background 0.25s;
+  }
+  .tasting-card:hover{background:#332115;}
+  .tc-origin{font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--bean-tan);margin-bottom:14px;display:block;}
+  .tc-name{font-family:'Fraunces',serif;font-weight:600;font-size:1.4rem;margin-bottom:10px;}
+  .tc-notes{font-size:0.92rem;color:var(--paper-dim);line-height:1.6;margin-bottom:18px;}
+  .tc-price{font-family:'JetBrains Mono',monospace;font-size:0.95rem;color:var(--citrus);}
+
+  @media (max-width:900px){.menu-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:600px){.menu-grid{grid-template-columns:1fr;}}
+
+  /* ---------- GALLERY / VIBE ---------- */
+  .vibe{background:var(--espresso-deep);}
+  .vibe-quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .quote-card{
+    border-left:2px solid var(--citrus);padding-left:20px;
+  }
+  .quote-card p{font-size:1rem;line-height:1.7;color:var(--paper);font-style:italic;font-family:'Fraunces',serif;font-weight:300;}
+  .quote-attr{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--paper-dim);text-transform:uppercase;letter-spacing:0.06em;}
+
+  @media (max-width:860px){.vibe-quotes{grid-template-columns:1fr;gap:32px;}}
+
+  /* ---------- VISIT / LOCATION ---------- */
+  .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(212,197,169,0.18);}
+  .visit-info{padding:48px;}
+  .visit-map{min-height:380px;background:#1C110B;display:flex;align-items:center;justify-content:center;border-left:1px solid rgba(212,197,169,0.18);}
+  .visit-map iframe{width:100%;height:100%;min-height:380px;border:0;filter:invert(0.92) hue-rotate(180deg) contrast(0.9);}
+
+  .info-row{display:flex;gap:18px;padding:18px 0;border-bottom:1px solid rgba(212,197,169,0.14);}
+  .info-row:first-child{padding-top:0;}
+  .info-row:last-child{border-bottom:none;}
+  .info-label{font-family:'JetBrains Mono',monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--bean-tan);min-width:90px;padding-top:2px;}
+  .info-val{font-size:0.98rem;color:var(--paper);line-height:1.6;}
+  .info-val a{color:var(--citrus);}
+  .info-val a:hover{text-decoration:underline;}
+
+  @media (max-width:860px){
+    .visit-grid{grid-template-columns:1fr;}
+    .visit-map{border-left:none;border-top:1px solid rgba(212,197,169,0.18);}
+  }
+
+  /* ---------- CTA STRIP ---------- */
+  .cta-strip{
+    background:linear-gradient(135deg, var(--citrus), #8f4a1f);
+    padding:70px 0;text-align:center;
+  }
+  .cta-strip h2{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(1.7rem,3.4vw,2.4rem);color:var(--espresso-deep);margin-bottom:24px;}
+  .cta-strip .btn-primary{background:var(--espresso-deep);color:var(--paper);}
+  .cta-strip .btn-primary:hover{background:#000;}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:50px 0 36px;}
+  .footer-grid{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px;}
+  .footer-brand{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem;}
+  .footer-meta{font-size:0.82rem;color:var(--paper-dim);line-height:1.7;}
+  .footer-social{display:flex;gap:18px;margin-top:14px;}
+  .footer-social a{font-family:'JetBrains Mono',monospace;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.05em;opacity:0.7;}
+  .footer-social a:hover{opacity:1;}
+  .footer-bottom{margin-top:40px;padding-top:24px;border-top:1px solid rgba(212,197,169,0.14);font-size:0.78rem;color:var(--paper-dim);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+
+  /* fade-in on scroll */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity 0.7s ease, transform 0.7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brandmark"><span class="dot"></span>TOISE</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#vibe">Vibe</a></li>
+    <li><a href="#visit">Visit</a></li>
+  </ul>
+  <a href="tel:+919321191468" class="nav-cta">Call to Reserve</a>
+</nav>
+
+<header class="hero">
+  <div class="hero-grain"></div>
+  <div class="wrap hero-inner">
+    <div>
+      <span class="eyebrow">Worli Sea Face · Mumbai</span>
+      <h1 class="display">Roasted upstairs.<br><em>Poured</em> right here.</h1>
+      <p class="hero-sub">A compact roastery and brewstudio on Dr Annie Besant Road — pour-overs, citrus tonics, and a matcha that earns the hype, all within walking distance of the sea face. Some days, you can watch the beans roast from the floor above.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn-primary">View the menu →</a>
+        <a href="#visit" class="btn-ghost">Get directions</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">4.7 ★</div><div class="stat-label">434 reviews</div></div>
+        <div class="stat"><div class="stat-num">8AM–11:30PM</div><div class="stat-label">Open daily</div></div>
+        <div class="stat"><div class="stat-num">In-house</div><div class="stat-label">Roasted on site</div></div>
+      </div>
+    </div>
+    <div class="cup-scene">
+      <svg class="steam-svg" viewBox="0 0 140 220">
+        <path class="steam-path s1" d="M 70 200 C 50 170, 90 150, 70 120 C 50 90, 90 70, 70 40" />
+        <path class="steam-path s2" d="M 95 200 C 115 175, 80 155, 95 125 C 110 100, 78 75, 95 45" />
+        <path class="steam-path s3" d="M 45 200 C 25 175, 60 155, 45 125 C 30 100, 62 75, 45 45" />
+      </svg>
+      <svg class="cup-svg" viewBox="0 0 200 160" fill="none">
+        <path d="M30 50 H150 L142 130 C140 142 130 150 118 150 H62 C50 150 40 142 38 130 L30 50Z" fill="#3A2417" stroke="#D4C5A9" stroke-width="2"/>
+        <path d="M150 62 C172 62 178 80 168 92 C160 102 148 100 146 100" stroke="#D4C5A9" stroke-width="3" fill="none"/>
+        <ellipse cx="90" cy="50" rx="60" ry="8" fill="#C7672B" opacity="0.85"/>
+        <rect x="20" y="148" width="140" height="8" rx="4" fill="#1C110B"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section id="about" class="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="reveal">
+        <span class="section-tag">The Roastery</span>
+        <h2 class="display" style="margin-bottom:28px;">Small batch, by design — not by accident.</h2>
+        <div class="about-copy">
+          <p>Toise started as a simple bet: that a neighbourhood café in Worli could roast its own beans and still feel like somewhere you'd duck into on a whim after a walk by the sea.</p>
+          <p>The upstairs seating is tight — mind your step, mind your head — but that's part of the charm. It's a place built for lingering over a pour-over, not rushing through a queue.</p>
+        </div>
+      </div>
+      <div class="roast-note reveal">
+        <div class="rn-row"><span class="rn-key">Origin</span><span class="rn-val">Worli, Mumbai</span></div>
+        <div class="rn-row"><span class="rn-key">Process</span><span class="rn-val">In-house roasted</span></div>
+        <div class="rn-row"><span class="rn-key">Seating</span><span class="rn-val">Ground + upper floor</span></div>
+        <div class="rn-row"><span class="rn-key">Known for</span><span class="rn-val">Matcha, pour-overs</span></div>
+        <div class="rn-row"><span class="rn-key">Rating</span><span class="rn-val">4.7 / 5 (434 reviews)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="section-tag">Tasting Notes</span>
+        <h2 class="display">A few favourites, on rotation.</h2>
+      </div>
+      <p class="section-note">Read like a roast log — what it is, what to expect, what it costs. Full menu in-café.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0;">
+    <div class="menu-grid reveal">
+      <div class="tasting-card">
+        <span class="tc-origin">Brewstudio · Hot</span>
+        <div class="tc-name">Orange Latte</div>
+        <p class="tc-notes">Espresso, steamed milk, fresh citrus oil. The house favourite for a reason.</p>
+        <div class="tc-price">₹280 – ₹320</div>
+      </div>
+      <div class="tasting-card">
+        <span class="tc-origin">Pour-Over · Single Origin</span>
+        <div class="tc-name">Filter Coffee</div>
+        <p class="tc-notes">Rotating single-origin beans, roasted upstairs. Ask your barista what's pouring today.</p>
+        <div class="tc-price">₹260 – ₹350</div>
+      </div>
+      <div class="tasting-card">
+        <span class="tc-origin">Brewstudio · Cold</span>
+        <div class="tc-name">Citrus Tonic</div>
+        <p class="tc-notes">Espresso over tonic and citrus — bright, fizzy, built for Mumbai afternoons.</p>
+        <div class="tc-price">₹280 – ₹320</div>
+      </div>
+      <div class="tasting-card">
+        <span class="tc-origin">Brewstudio · Hot/Cold</span>
+        <div class="tc-name">Matcha</div>
+        <p class="tc-notes">Rich, well-balanced, ceremonial-grade. The reason regulars keep coming back.</p>
+        <div class="tc-price">₹300 – ₹360</div>
+      </div>
+      <div class="tasting-card">
+        <span class="tc-origin">Brewstudio · Hot</span>
+        <div class="tc-name">Dark Chocolate Mocha</div>
+        <p class="tc-notes">Espresso, dark chocolate, steamed milk. Rich without tipping into too sweet.</p>
+        <div class="tc-price">₹300 – ₹340</div>
+      </div>
+      <div class="tasting-card">
+        <span class="tc-origin">Kitchen</span>
+        <div class="tc-name">Banana Bread</div>
+        <p class="tc-notes">Soft, flavourful, baked in-house. Pairs well with anything on this menu.</p>
+        <div class="tc-price">₹180 – ₹220</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="vibe" class="vibe">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="section-tag">In Their Words</span>
+        <h2 class="display">What regulars say after the first visit.</h2>
+      </div>
+    </div>
+    <div class="vibe-quotes reveal">
+      <div class="quote-card">
+        <p>"Such a cozy, welcoming place. The matcha truly lives up to the hype."</p>
+        <div class="quote-attr">Google Review</div>
+      </div>
+      <div class="quote-card">
+        <p>"Warm, aesthetic, and super inviting — easy to lose track of time here."</p>
+        <div class="quote-attr">Google Review</div>
+      </div>
+      <div class="quote-card">
+        <p>"Found this spot by accident — turned out to be a great place to relax."</p>
+        <div class="quote-attr">Google Review</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="section-tag">Find Us</span>
+        <h2 class="display">Worli Sea Face is a short walk away.</h2>
+      </div>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0;">
+    <div class="visit-grid reveal">
+      <div class="visit-info">
+        <div class="info-row">
+          <div class="info-label">Address</div>
+          <div class="info-val">Shop No.1, Madhu Hans,<br>Dr Annie Besant Rd, Adarsh Nagar,<br>Worli, Mumbai, Maharashtra 400030</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Hours</div>
+          <div class="info-val">Open daily<br>8:00 AM – 11:30 PM</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Phone</div>
+          <div class="info-val"><a href="tel:+919321191468">+91 93211 91468</a></div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Rating</div>
+          <div class="info-val">4.7 / 5 — 434 Google reviews</div>
+        </div>
+        <div class="hero-actions" style="margin-top:28px;">
+          <a href="https://maps.app.goo.gl/5b9f3cGUxysfCZ3t5" target="_blank" rel="noopener" class="btn-primary">Open in Google Maps →</a>
+        </div>
+      </div>
+      <div class="visit-map">
+        <iframe
+          src="https://maps.google.com/maps?q=19.0125475,72.8216988&z=16&output=embed"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Toise Coffee Roastery location map">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <div class="wrap">
+    <h2>Walk in any time before 11:30 PM, every day.</h2>
+    <a href="tel:+919321191468" class="btn-primary">Call +91 93211 91468</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">TOISE</div>
+        <div class="footer-meta">Coffee Roastery + Brewstudio<br>Worli, Mumbai</div>
+        <div class="footer-social">
+          <a href="https://maps.app.goo.gl/5b9f3cGUxysfCZ3t5" target="_blank" rel="noopener">Google Maps</a>
+          <a href="tel:+919321191468">Call</a>
+        </div>
+      </div>
+      <div class="footer-meta">
+        Shop No.1, Madhu Hans<br>
+        Dr Annie Besant Rd, Adarsh Nagar<br>
+        Worli, Mumbai, Maharashtra 400030
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Toise Coffee Roastery + Brewstudio</span>
+      <span>Roasted upstairs. Poured right here.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toReveal = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.15 });
+  toReveal.forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
